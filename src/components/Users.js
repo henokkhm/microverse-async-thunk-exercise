@@ -1,7 +1,15 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { fetchUsers } from '../redux/users/usersSlice';
 
 function Users() {
+  const dispatch = useDispatch();
   const { users, isLoading, error } = useSelector((store) => store.users);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -23,14 +31,9 @@ function Users() {
         {users.map((user) => {
           return (
             <li key={user.id}>
-              <div>
-                <span>First Name:</span>
-                <span>{user.firstName}</span>
-              </div>
-              <div>
-                <span>Last Name:</span>
-                <span>{user.lastName}</span>
-              </div>
+                <span>{user.name.first}</span>
+                {' '}
+                <span>{user.name.last}</span>
             </li>
           );
         })}
