@@ -1,4 +1,5 @@
 import './App.css';
+import Users from './components/Users';
 
 function App() {
   return (
@@ -6,6 +7,9 @@ function App() {
       <header>
         <h1>Exercise: Connecting React and Redux App to an API</h1>
       </header>
+      <main>
+       <Users />
+      </main>
     </div>
   );
 }
